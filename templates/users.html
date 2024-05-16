@@ -21,25 +21,29 @@
             <!-- table to display users -->
             <!-- need ID, FULL NAME, EMAIL, TIME OF CREATION -->
             <div class="row my-5">
-                <div class="col-lg-6">
-                    <table class="table table-success table-striped">
-                        <thead>
-                            <th scope="col">ID</th>
-                            <th scope="col">Full Name</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Created At</th>
-                        </thead>
-                        <tbody>
-                            {% for user in users %}
+                <div class="col-lg">
+                    <div class="table-responsive">
+                        <table class="table table-success table-striped">
+                            <thead>
+                                <th scope="col">ID</th>
+                                <th scope="col">Full Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Created At</th>
+                                <th scope="col">Actions</th>
+                            </thead>
+                            <tbody>
+                                {% for user in users %}
                                 <tr>
                                     <td>{{user.id}}</td>
                                     <td>{{user.first_name}} {{user.last_name}}</td>
                                     <td>{{user.email}}</td>
                                     <td>{{user.created_at}}</td>
+                                    <td><a href="/user/{{ user.id }}">Show</a> | <a href="/edit/user/{{ user.id }}">Edit</a> | <a href="/delete/user/{{ user.id }}">Delete</a></td>
                                 </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
     </section>
