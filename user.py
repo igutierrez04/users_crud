@@ -25,3 +25,20 @@ class User:
         for user in results:
             users.append(cls(user))
         return users
+    
+    @classmethod
+    def get_one(cls, id):
+        query = " SELECT * FROM users WHERE id = %(id)s;"
+        results = connectToMySQL(cls.DB).query_db(query, {"id": id})
+        return cls(results[0])
+
+    @classmethod
+    def delete(cls, id):
+        query = "DELETE FROM users WHERE id = %(id)s;"
+        return connectToMySQL(cls.DB).query_db(query, {"id": id})
+    
+    @classmethod
+    def edit(cls, id):
+        query = "UPDATE users SET first_name = %(first_name)s, last_name = %(last_name)s, email = %(email)s, updated_at = NOW() WHERE id = %(id)s; "
+        results  = connectToMySQL(cls.DB).query_db(query, {"id": id})
+        return results
