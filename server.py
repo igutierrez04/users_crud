@@ -20,15 +20,21 @@ def create_user():
 
 @app.route('/all_users')
 def all_users():
-    #call the geet all classmethod to get all users
+    #call the get all classmethod to get all users
     users = User.get_all_users()
     return render_template('users.html', users = users)
 
 @app.route('/edit/user/<int:user_id>')
 def edit(user_id):
-    print("Recieved")
-    user = User.edit(user_id)
-    return render_template('/edit.html', user = user)
+    data = {
+        "id": id
+    }
+    return render_template('/edit.html', user = User.get_one(user_id))
+
+@app.route('/update', methods=['POST'])
+def update():
+    User.update(request.form)
+    return redirect('/user/<int:user_id>')
 
 @app.route('/delete/user/<int:user_id>')
 def delete(user_id):
