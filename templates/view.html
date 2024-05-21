@@ -25,12 +25,12 @@
                 <div class="col-lg-8 border border-2 border-dark">
                     <p class="fs-2">Full Name: <span class="fs-3">{{user.first_name}} {{user.last_name}}</span></p>
                     <p class="fs-2">Email: <span class="fs-3">{{ user.email }}</span></p>
-                    <p class="fs-2">Created On: <span class="fs-3">{{ user.created_at }}</span></p>
-                    <p class="fs-2">Last Updated On: <span class="fs-3">{{ user.updated_at }}</span></p>
+                    <p class="fs-2">Created On: <span class="fs-3">{{ user.created_at.strftime("%b %d %Y") }}</span></p>
+                    <p class="fs-2">Last Updated On: <span class="fs-3">{{ user.updated_at.strftime("%b %d %Y") }}</span></p>
                 </div>
                 <!-- bottom links -->
                 <div class="mt-4">
-                    <span class="fs-2 text-center"><a href="/edit/user/{{ user.id }}" class="btn btn-outline-primary btn-md">Edit</a> | <a href="/delete/user/{{ user.id }}" class="btn btn-outline-primary btn-md">Delete</a>
+                    <span class="fs-2 text-center"><a href="/edit/user/{{ user.id }}" class="btn btn-outline-primary btn-md">Edit</a> | <a href="/user/delete/{{ user.id }}" class="btn btn-outline-primary btn-md">Delete</a>
                     </span>
                 </div>
             </div>

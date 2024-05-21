@@ -37,8 +37,8 @@
                                     <td>{{user.id}}</td>
                                     <td>{{user.first_name}} {{user.last_name}}</td>
                                     <td>{{user.email}}</td>
-                                    <td>{{user.created_at}}</td>
-                                    <td><a href="/user/{{ user.id }}">Show</a> | <a href="/edit/user/{{ user.id }}">Edit</a> | <a href="/delete/user/{{ user.id }}">Delete</a></td>
+                                    <td>{{user.created_at.strftime("%b %d %Y")}}</td>
+                                    <td><a href="/user/{{ user.id }}">Show</a> | <a href="/edit/user/{{ user.id }}">Edit</a> | <a href="/user/delete/{{ user.id }}">Delete</a></td>
                                 </tr>
                                 {% endfor %}
                             </tbody>

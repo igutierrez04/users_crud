@@ -24,29 +24,38 @@ def all_users():
     users = User.get_all_users()
     return render_template('users.html', users = users)
 
-@app.route('/edit/user/<int:user_id>')
-def edit(user_id):
+@app.route('/edit/user/<int:id>')
+def edit(id):
     data = {
         "id": id
     }
-    return render_template('/edit.html', user = User.get_one(user_id))
+    return render_template('/edit.html', user = User.get_one(data))
 
-@app.route('/update', methods=['POST'])
+@app.route('/user/update', methods=['POST'])
 def update():
-    User.update(request.form)
-    return redirect('/user/<int:user_id>')
+    data = {
+        "id": request.form['user_id'],
+        "first_name": request.form['first_name'],
+        "last_name": request.form['last_name'],
+        "email": request.form['email']
+    }
+    User.update(data)
+    return redirect(f'/user/{data["id"]}')
 
-@app.route('/delete/user/<int:user_id>')
-def delete(user_id):
-    User.delete(user_id)
+@app.route('/user/delete/<int:id>')
+def delete(id):
+    data = {
+        "id": id
+    }
+    User.delete(data)
     return redirect('/all_users')
 
-@app.route('/user/<int:user_id>')
-def one_user(user_id):
-    user = User.get_one(user_id)
-    return render_template('view.html', user = user)
-
-
+@app.route('/user/<int:id>')
+def one_user(id):
+    data = {
+        "id": id
+    }
+    return render_template('view.html', user = User.get_one(data))
 
 
 if __name__=="__main__":
